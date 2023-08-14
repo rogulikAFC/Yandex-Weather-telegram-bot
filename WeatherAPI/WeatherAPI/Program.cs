@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WeatherAPI;
 using WeatherAPI.DbContexts;
+using WeatherAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,8 @@ var connectionString = $"Host={Environment.GetEnvironmentVariable("POSTGRESQL_EN
 
 builder.Services.AddDbContext<WeatherDbContext>(
     options => options.UseNpgsql(connectionString));
+
+builder.Services.AddTransient<IWeatherScraper, WeatherScraper>();
 
 var app = builder.Build();
 
