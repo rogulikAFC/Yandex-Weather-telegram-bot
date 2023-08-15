@@ -7,6 +7,13 @@ namespace WeatherAPI.Entities
     [Index(nameof(TelegramId), IsUnique = true)]
     public class User
     {
+        public User(Guid id, string name, long telegramId)
+        {
+            Id = id;
+            Name = name;
+            TelegramId = telegramId;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -16,9 +23,10 @@ namespace WeatherAPI.Entities
         public string Name { get; set; } = null!;
         
         [Required]
-        public int TelegramId { get; set; }
+        public long TelegramId { get; set; }
 
-        public virtual ICollection<Place> Places { get; set; } = new List<Place>();
+        public virtual ICollection<Place> Places { get; set; }
+            = new List<Place>();
     }
 }
 

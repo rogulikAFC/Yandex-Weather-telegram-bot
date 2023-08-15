@@ -5,7 +5,7 @@ namespace WeatherAPI.Services
 {
     public interface IWeatherScraper
     {
-        public AllDayForecastDto? GetForecastToDateByPlace(
-            PlaceDto place, DateOnly date);
+        public Task<AllDayForecastDto?> GetForecastToDateByPlace(
+            Guid placeId, DateOnly date);
     }
 }

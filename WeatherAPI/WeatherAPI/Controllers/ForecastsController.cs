@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WeatherAPI.DAL;
 using WeatherAPI.Models;
 using WeatherAPI.Services;
 
@@ -10,27 +11,36 @@ namespace WeatherAPI.Controllers
     public class ForecastsController : ControllerBase
     {
         private readonly IWeatherScraper _weatherScraper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ForecastsController(IWeatherScraper weatherScraper)
+        public ForecastsController(
+            IWeatherScraper weatherScraper, IUnitOfWork unitOfWork)
         {
-            _weatherScraper = weatherScraper;
+            _weatherScraper = weatherScraper
+                ?? throw new ArgumentNullException(nameof(weatherScraper));
+
+            _unitOfWork = unitOfWork
+                ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        [HttpGet]
-        public ActionResult<AllDayForecastDto?> Test()
+        [HttpGet("{placeId}/date/{year}/{month}/{day}")]
+        public async Task<ActionResult<AllDayForecastDto?>> GetAllDayForecastByPlaceAndDate(
+            Guid placeId, int year, int month, int day)
         {
-            var placeDto = new PlaceDto()
+            var place = await _unitOfWork.PlaceRepository
+                .GetByIdAsync(placeId);
+
+            if (place == null)
             {
-                Id = new Guid(),
-                Lat = 1,
-                Lon = 1,
-                Name = "Somewhere in the Africa"
-            };
+                return NotFound();
+            }
 
-            var allDayForecastDto = _weatherScraper
-                .GetForecastToDateByPlace(placeDto, new DateOnly(2023, 08, 23));
+            var date = new DateOnly(year, month, day);
 
-            if (allDayForecastDto == null )
+            var allDayForecastDto = await _weatherScraper
+                .GetForecastToDateByPlace(placeId, date);
+
+            if (allDayForecastDto == null)
             {
                 return BadRequest();
             }

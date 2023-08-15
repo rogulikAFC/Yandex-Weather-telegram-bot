@@ -1,15 +1,38 @@
-﻿using OpenQA.Selenium;
+﻿using AutoMapper;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using WeatherAPI.DAL;
 using WeatherAPI.Models;
 
 namespace WeatherAPI.Services
 {
     public class WeatherScraper : IWeatherScraper
     {
-        public AllDayForecastDto? GetForecastToDateByPlace(
-            PlaceDto /* must be placeID */ place, DateOnly date)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+
+        public WeatherScraper(
+            IUnitOfWork unitOfWork, IMapper mapper)
         {
+            _unitOfWork = unitOfWork
+                ?? throw new ArgumentNullException(nameof(unitOfWork));
+
+            _mapper = mapper
+                ?? throw new ArgumentNullException(nameof(unitOfWork));
+        }
+
+        public async Task<AllDayForecastDto?> GetForecastToDateByPlace(
+            Guid placeId, DateOnly date)
+        {
+            var place = await _unitOfWork.PlaceRepository
+                .GetByIdAsync(placeId);
+
+            if (place == null)
+            {
+                return null;
+            }
+
             var dateString = date.ToString("dd MMMM");
 
             var url = $"https://yandex.com/weather/?lat={place.Lat}&lon={place.Lon}";
@@ -164,8 +187,10 @@ namespace WeatherAPI.Services
             var moonStatus = daylightColumn.FindElement(
                 By.ClassName("forecast-details__moon")).Text.ToLower();
 
+            var placeDto = _mapper.Map<PlaceDto>(place);
+
             var allDayForecastDto = new AllDayForecastDto(
-                date, place, partOfDayForecastDtos,
+                date, placeDto, partOfDayForecastDtos,
                 UVIndexValue, UVIndexDescription, magneticFieldStatus,
                 waterTemperature, sunriseValue, sunsetValue, moonStatus);
 
