@@ -9,6 +9,9 @@ namespace WeatherAPI.MappingProfiles
         public PlaceProfile()
         {
             CreateMap<Place, PlaceDto>();
+            CreateMap<Place, PlaceWithoutUserDto>();
+            CreateMap<PlaceForCreateDto, Place>();
+            CreateMap<PlaceForUpdateDto, Place>();
         }
     }
 }

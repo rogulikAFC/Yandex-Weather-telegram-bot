@@ -19,16 +19,8 @@ namespace WeatherAPI.DAL
             _weatherDbContext.Users.Add(user);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public void DeleteAsync(User user)
         {
-            var user = await _weatherDbContext.Users
-                .FindAsync(id);
-
-            if (user == null)
-            {
-                return;
-            }
-
             _weatherDbContext.Users.Remove(user);
         }
 

@@ -5,6 +5,8 @@ namespace WeatherAPI.Entities
 {
     public class Place
     {
+        public Place() { }
+
         public Place(
             Guid id, double lat, double lon,
             string name, Guid userId)
@@ -21,9 +23,11 @@ namespace WeatherAPI.Entities
         public Guid Id { get; set; }
 
         [Required]
+        [Range(-90, 90)]
         public double Lat { get; set; }
 
         [Required]
+        [Range(-180, 180)]
         public double Lon { get; set; }
 
         [Required]

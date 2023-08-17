@@ -11,6 +11,6 @@ namespace WeatherAPI.DAL
 
         void Add(User user);
 
-        Task DeleteAsync(Guid id);
+        void DeleteAsync(User user);
     }
 }

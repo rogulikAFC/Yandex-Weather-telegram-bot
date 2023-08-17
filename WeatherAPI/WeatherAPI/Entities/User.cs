@@ -7,6 +7,8 @@ namespace WeatherAPI.Entities
     [Index(nameof(TelegramId), IsUnique = true)]
     public class User
     {
+        public User() { }
+
         public User(Guid id, string name, long telegramId)
         {
             Id = id;

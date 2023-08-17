@@ -19,41 +19,32 @@ namespace WeatherAPI.DAL
             _weatherDbContext.Places.Add(place);
         }
 
-        public async Task DeleteAsync(Guid placeId)
+        public void DeleteAsync(Place place)
         {
-            var place = await _weatherDbContext
-                .Places.FindAsync(placeId);
-
-            if (place == null)
-            {
-                return;
-            }
-
             _weatherDbContext.Places.Remove(place);
         }
 
         public async Task<Place?> GetByIdAsync(Guid placeId)
         {
-            return await _weatherDbContext
-                .Places.FindAsync(placeId);
+            return await _weatherDbContext.Places
+                .Where(p => p.Id == placeId)
+                .Include(p => p.User)
+                .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Place>?> GetPlacesOfUserAsync(Guid userId, int pageNum, int pageSize)
+        public async Task<IEnumerable<Place>?> GetPlacesOfUserAsync(Guid userId)
         {
             var user = await _weatherDbContext.Users
                 .Where(u => u.Id == userId)
                 .Include(u => u.Places)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
 
             if (user == null)
             {
                 return null;
             }
 
-            return user.Places
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            return user.Places;
         }
     }
 }
