@@ -4,28 +4,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherAPI.Entities
 {
-    [Index(nameof(TelegramId), IsUnique = true)]
+    [Index(nameof(Id), IsUnique = true)]
     public class User
     {
         public User() { }
 
-        public User(Guid id, string name, long telegramId)
+        public User(string name, long id)
         {
             Id = id;
-            Name = name;
-            TelegramId = telegramId;
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [Required]
+        public long Id { get; set; }
 
-        [MaxLength(32)]
-        [Required]
-        public string Name { get; set; } = null!;
-        
-        [Required]
-        public long TelegramId { get; set; }
+        /* [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; } */ 
 
         public virtual ICollection<Place> Places { get; set; }
             = new List<Place>();

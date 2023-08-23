@@ -30,10 +30,14 @@ namespace WeatherAPI.Services
 
             if (place == null)
             {
+                Console.WriteLine("Place is null");
+
                 return null;
             }
 
             var dateString = date.ToString("dd MMMM");
+
+            Console.WriteLine(dateString);
 
             var url = $"https://yandex.com/weather/?lat={place.Lat}&lon={place.Lon}";
 
@@ -41,7 +45,7 @@ namespace WeatherAPI.Services
 
             driver.Navigate().GoToUrl(url);
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
             try
             {
@@ -50,6 +54,10 @@ namespace WeatherAPI.Services
             }
             catch
             {
+                driver.Quit();
+
+                Console.WriteLine("a11y-hidden is null");
+
                 return null;
             }
 

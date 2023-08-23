@@ -22,8 +22,8 @@ namespace WeatherAPI.Controllers
                 ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlaceDto>>> GetPlaces(Guid userId)
+        [HttpGet("by_user/{userId}")]
+        public async Task<ActionResult<IEnumerable<PlaceDto>>> GetPlaces(long userId)
         {
             var places = await _unitOfWork.PlaceRepository
                 .GetPlacesOfUserAsync(userId);
@@ -66,7 +66,7 @@ namespace WeatherAPI.Controllers
             PlaceForCreateDto place)
         {
             var user = await _unitOfWork.UserRepository
-                .GetByIdAsync(place.UserId);
+                .GetUserByTelegramId(place.UserId);
 
             if (user == null)
             {

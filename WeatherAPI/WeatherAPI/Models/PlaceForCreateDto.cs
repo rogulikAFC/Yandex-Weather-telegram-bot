@@ -16,6 +16,6 @@ namespace WeatherAPI.Models
         public string Name { get; set; } = null!;
 
         [Required]
-        public Guid UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

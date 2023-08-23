@@ -32,7 +32,7 @@ namespace WeatherAPI.DAL
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Place>?> GetPlacesOfUserAsync(Guid userId)
+        public async Task<IEnumerable<Place>?> GetPlacesOfUserAsync(long userId)
         {
             var user = await _weatherDbContext.Users
                 .Where(u => u.Id == userId)

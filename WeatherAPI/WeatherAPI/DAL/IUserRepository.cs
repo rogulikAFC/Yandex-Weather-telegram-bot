@@ -7,7 +7,9 @@ namespace WeatherAPI.DAL
         Task<IEnumerable<User>> GetUsersAsync(
             int pageNum, int pageSize);
 
-        Task<User?> GetByIdAsync(Guid id);
+        /* Task<User?> GetByIdAsync(Guid id); */
+
+        Task<User?> GetUserByTelegramId(long userId);
 
         void Add(User user);
 

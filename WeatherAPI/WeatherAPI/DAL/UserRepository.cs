@@ -24,12 +24,20 @@ namespace WeatherAPI.DAL
             _weatherDbContext.Users.Remove(user);
         }
 
-        public async Task<User?> GetByIdAsync(Guid id)
+        /* public async Task<User?> GetByIdAsync(long telegramId)
         {
             return await _weatherDbContext.Users
-                .Where(u => u.Id == id)
+                .Where(u => u.TelegramId == telegramId)
                 .Include(u => u.Places)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
+        } */ 
+
+        public async Task<User?> GetUserByTelegramId(long userId)
+        {
+            return await _weatherDbContext.Users
+                .Where(u => u.Id == userId)
+                .Include(u => u.Places)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync(int pageNum, int pageSize)
