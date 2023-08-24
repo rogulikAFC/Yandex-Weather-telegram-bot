@@ -1,0 +1,43 @@
+.field {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.field__title {
+  font-family: Open Sans;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.30000001192092896px;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  color: #979DBB;
+}
+
+.field__input {
+  all: unset;
+  height: 48px;
+  border: 1px solid #A9ABBA;
+  background-color: #F5F7FB;
+  border-radius: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-family: Open Sans;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: left;
+}
+
+.field__input:placeholder-shown {
+  color: #A9ABBA;
+}
+
+.field__input:focus {
+  border: 1px solid #4F8BE4;
+}
+
+.field__input:focus ~ .field__title {
+  color: #4F8BE4;
+}
