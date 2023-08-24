@@ -33,8 +33,31 @@ namespace WeatherAPI.Entities
         [Required]
         public string Name { get; set; } = null!;
 
+        public byte[] MapImage { get; set; }
+
         public long UserId { get; set; }
 
         public User User { get; set; } = null!;
+
+        public void SetMapImage()
+        {
+            var yandexApiKey = Environment.GetEnvironmentVariable("YANDEX_API_KEY");
+
+            var url = $"https://static-maps.yandex.ru/1.x/" +
+                $"?ll={Lon},{Lat}" +
+                $"&l=map" +
+                $"&z=16" +
+                $"&apikey={yandexApiKey}";
+
+            Console.WriteLine(url);
+
+            var client = new HttpClient();
+
+            var response = client.GetAsync(url).Result;
+
+            var image = response.Content.ReadAsByteArrayAsync().Result;
+
+            MapImage = image;
+        }
     }
 }

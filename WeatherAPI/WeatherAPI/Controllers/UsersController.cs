@@ -21,17 +21,17 @@ namespace WeatherAPI.Controllers
         }
 
         [HttpGet("{pageNum}/{pageSize}")]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(
+        public async Task<ActionResult<IEnumerable<UserWithoutPlacesDto>>> GetUsers(
             int pageNum, int pageSize)
         {
             var users = await _unitOfWork.UserRepository
                 .GetUsersAsync(pageNum, pageSize);
 
-            var userDtos = new List<UserDto>();
+            var userDtos = new List<UserWithoutPlacesDto>();
 
             foreach (var user in users)
             {
-                var userDto = _mapper.Map<UserDto>(user);
+                var userDto = _mapper.Map<UserWithoutPlacesDto>(user);
 
                 userDtos.Add(userDto);
             }

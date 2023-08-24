@@ -40,6 +40,11 @@ namespace WeatherAPI.Entities
                         5007789926)
                 };
 
+                foreach (var place in places)
+                {
+                    place.SetMapImage();
+                }
+
                 _weatherDbContext.Places.AddRange(places);
                 _weatherDbContext.SaveChanges();
             }
