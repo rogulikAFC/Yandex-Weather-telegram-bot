@@ -35,31 +35,12 @@ namespace WeatherAPI.Middlewares
             var isRegistrationMethod = context.Request
                 .Path.ToString().Equals("/api/users");
 
-            Console.WriteLine("registration method status is " + isRegistrationMethod);
-
             if (isRegistrationMethod)
             {
                 await _next(context);
 
                 return;
             }
-
-            /* if (controllerActionDescriptior == null)
-            {
-                
-                throw new Exception("controller action descriptor is null");
-            }
-
-            var actionName = controllerActionDescriptior.ActionName;
-
-            Console.WriteLine(actionName);
-
-            if (actionName == "RegistrateUser")
-            {
-                await _next(context);
-
-                return;
-            } */
 
             var userIdString = context.Request.Query["user_id"].ToString();
 

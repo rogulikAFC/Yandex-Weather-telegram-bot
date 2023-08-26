@@ -6,5 +6,8 @@ namespace WeatherAPI.Models
     {
         [Required]
         public long Id { get; set; }
+
+        [Required]
+        public string captchaToken { get; set; } = null!;
     }
 }

@@ -1,0 +1,35 @@
+.registration-container {
+  display: flex;
+}
+
+.registration-container_centered {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-container__header {
+  color: #4F8BE4;
+}
+
+.registration-container__title {
+  font-family: Open Sans;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 63px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.registration-container__subtitle {
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.30000001192092896px;
+  text-align: center;
+}
+
+.registration-container__form {
+  margin-top: 97px;
+}
