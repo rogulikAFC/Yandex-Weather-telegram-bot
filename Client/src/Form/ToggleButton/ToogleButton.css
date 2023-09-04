@@ -1,0 +1,52 @@
+.toogle-button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 42px;
+  height: 23px;
+  align-items: center;
+}
+
+.toogle-button__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toogle-button__appearance {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F5F7FB;
+  box-shadow: 0px 1px 2px 0px #4F8BE43B inset;
+  /* transition: 0.3s; */
+  border-radius: 550px;
+}
+
+.toogle-button__appearance::before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  transition: 0.3s;
+  background: #4F8BE4;
+}
+
+.toogle-button__input:checked + span::before {
+  transform: translateX(20px);
+}
+
+.toogle-button__title {
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  margin-left: calc(16px + 43px - 23px/2);
+  color: #979DBB;
+  text-align: center;
+}

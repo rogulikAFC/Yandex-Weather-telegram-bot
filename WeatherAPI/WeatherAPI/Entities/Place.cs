@@ -31,6 +31,7 @@ namespace WeatherAPI.Entities
         public double Lon { get; set; }
 
         [Required]
+        [MaxLength(64)]
         public string Name { get; set; } = null!;
 
         public byte[] MapImage { get; set; }
@@ -38,6 +39,8 @@ namespace WeatherAPI.Entities
         public long UserId { get; set; }
 
         public User User { get; set; } = null!;
+
+        public bool IsMain { get; set; }
 
         public void SetMapImage()
         {

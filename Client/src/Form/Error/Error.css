@@ -1,0 +1,10 @@
+.field__error {
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ED9C87;
+  margin-top: 10px;
+}

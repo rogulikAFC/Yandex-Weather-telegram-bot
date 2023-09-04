@@ -1,12 +1,14 @@
 import "./Field.css";
 
-function Field({ title, placeholder, hasError }) {
+function Field({ title, register, error, placeholder}) {
   return (
-    <div className={`field form__field${hasError ? " field_error" : ""}`}>
-      <input type="text" className="field__input" placeholder={placeholder} />
+    <label className={`field form__field${error ? " field_error" : ""}`}>
+      {error}
+      
+      <input type="text" className="field__input" placeholder={placeholder} {...register}/>
       
       <span className="field__title">{title}</span>
-    </div>
+    </label>
   );
 }
 

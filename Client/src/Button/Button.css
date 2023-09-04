@@ -1,0 +1,25 @@
+.button {
+  border: none;
+  border-radius: 6px;
+  font-family: Open Sans;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: center;
+}
+
+.button_blue {
+  background-color: #4F8BE4;
+  color: white;
+}
+
+.button_white {
+  background: #F5F7FB;
+  color: #979DBB;
+}
+
+.button_red {
+  background-color: #e9785c;
+  color: #fff;
+}

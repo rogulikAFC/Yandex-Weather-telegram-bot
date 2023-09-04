@@ -1,8 +1,8 @@
 import ReCAPTCHA from "react-google-recaptcha";
 import "./RegistrationPage.css";
 import { useRef } from "react";
-import BlueButton from "../BlueButton/BlueButton";
 import { useParams } from "react-router-dom";
+import Button from "../../Button/Button";
 
 function RegistrationPage() {
   const captcha_ref = useRef(null);
@@ -39,8 +39,6 @@ function RegistrationPage() {
       return;
     }
 
-    console.log("successful!");
-
     window.location.replace(telegram_bot_url);
   }
 
@@ -58,9 +56,9 @@ function RegistrationPage() {
           onSubmit={handleSubmitAsync}
         >
           <ReCAPTCHA sitekey={recaptcha_key} ref={captcha_ref} />
-          <BlueButton heightInPx={32} widthInPx={360} submit={true}>
+          <Button heightInPx={32} widthInPx={360} submit={true} color="blue" block="form">
             Sign up
-          </BlueButton>
+          </Button>
         </form>
       </header>
     </div>

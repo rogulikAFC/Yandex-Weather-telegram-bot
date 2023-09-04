@@ -12,7 +12,10 @@ namespace WeatherAPI.Models
         [Required]
         public float Lon { get; set; }
 
+        public bool IsMain { get; set; }
+
         [Required]
+        [MaxLength(64)]
         public string Name { get; set; } = null!;
 
         [Required]

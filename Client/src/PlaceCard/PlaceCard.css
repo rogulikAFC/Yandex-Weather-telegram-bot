@@ -1,0 +1,70 @@
+.place-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8.5px;
+  width: 224px;
+  font-family: Open Sans;
+  font-weight: 600;
+  letter-spacing: 0em;
+  background-color: #f5f7fb;
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.place-card__main {
+  background: linear-gradient(214.01deg, rgba(79, 139, 228, 0.8) 1.1%, #3A78F2 98.17%);
+  color: white;
+}
+
+.place-card__map-image {
+  width: 223.93px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.place-card__data-container {
+  display: flex;
+  flex-direction: inherit;
+  align-items: inherit;
+  row-gap: inherit;
+}
+
+.place-card__name {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 10px 0 10px 0;
+  text-align: center;
+}
+
+.location-table {
+  display: inline;
+  margin-bottom: 10px;
+}
+
+.location-table__heading {
+  padding-right: 44px;
+}
+
+.location-table__heading {
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  color: #a9abba;
+}
+
+.place-card__main .location-table__heading {
+  color: #f1f1f1;
+}
+
+.location-table__value {
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+}
+
+.place-card__button {
+  margin-bottom: 7px;
+}

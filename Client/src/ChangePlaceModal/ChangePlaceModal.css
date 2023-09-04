@@ -1,0 +1,23 @@
+.modal-actions {
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+}
+
+.modal__modal-actions {
+  justify-self: end;
+}
+
+.modal__modal-actions_place-change-form {
+  column-gap: 28px;
+}
+
+.modal__place-change-form {
+  margin-bottom: 24px;
+}
+
+.place-change-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+}
