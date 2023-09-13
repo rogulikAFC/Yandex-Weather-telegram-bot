@@ -7,7 +7,7 @@
             IEnumerable<PartOfDayForecastDto> forecastByPartsOfDay,
             int? UVIndexValue, string? UVIndexDescription,
             string? magneticFieldStatus, int? waterTemperature,
-            TimeOnly sunriseTime, TimeOnly sunsetTime, 
+            string sunriseTime, string sunsetTime, 
             string moonStatus)
         {
             Date = date;

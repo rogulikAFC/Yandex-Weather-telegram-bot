@@ -75,6 +75,8 @@ namespace WeatherAPI.Controllers
 
             var placeEntity = _mapper.Map<Place>(place);
 
+            Console.WriteLine(placeEntity.Name);
+
             _unitOfWork.PlaceRepository.Add(placeEntity);
             await _unitOfWork.SaveChangesAsync();
 

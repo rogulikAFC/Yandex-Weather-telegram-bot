@@ -35,7 +35,7 @@ namespace WeatherAPI.Services
                 return null;
             }
 
-            var dateString = date.ToString("dd MMMM");
+            var dateString = date.ToString("d MMMM");
 
             Console.WriteLine(dateString);
 
@@ -44,6 +44,8 @@ namespace WeatherAPI.Services
             var driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl(url);
+
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, 500)");
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
@@ -200,7 +202,7 @@ namespace WeatherAPI.Services
             var allDayForecastDto = new AllDayForecastDto(
                 date, placeDto, partOfDayForecastDtos,
                 UVIndexValue, UVIndexDescription, magneticFieldStatus,
-                waterTemperature, sunriseValue, sunsetValue, moonStatus);
+                waterTemperature, sunriseString, sunsetString, moonStatus);
 
             driver.Quit();
 
