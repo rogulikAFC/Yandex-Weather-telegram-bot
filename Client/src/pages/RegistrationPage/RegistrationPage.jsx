@@ -26,7 +26,7 @@ function RegistrationPage() {
         id: Number(userTelegramId),
         captchaToken: token,
       }),
-      mode: "cors",
+      mode: 'no-cors',
       headers: new Headers({
         "content-type": "application/json",
         'Access-Control-Allow-Origin': '*'

@@ -36,7 +36,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
- /* builder.Services.AddCors(options =>
+builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,
         policy =>
@@ -48,9 +48,9 @@ builder.Services.AddAutoMapper(typeof(Program));
                         .AllowAnyOrigin();
             /* policy.AllowAnyOrigin()
            .AllowAnyMethod()
-           .AllowAnyHeader(); 
+           .AllowAnyHeader(); */
         });
-}); */
+});
 
 var app = builder.Build();
 
@@ -76,7 +76,7 @@ app.UseHttpsRedirection();
 
 app.UseOptions();
 
-//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
